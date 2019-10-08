@@ -5,6 +5,7 @@ let upload = multer();
 let passwordsAssoc = {};
 let attempts = {};
 app.use('/', express.static(__dirname + '/public'));
+
 app.post('/signup', upload.none(), (req, res) => {
   console.log('/signup hit', req.body);
   let username = req.body.username;
