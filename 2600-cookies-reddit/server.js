@@ -10,8 +10,6 @@ const threads = [];
 const passwordsAssoc = {};
 const sessions = {};
 const users = {};
-const messages = {};
-const colors = {};
 const h = (element, children) => {
   return (
     '<' +
