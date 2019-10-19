@@ -10,6 +10,8 @@ const threads = [];
 const passwordsAssoc = {};
 const sessions = {};
 const users = {};
+const messages = {};
+const colors = {};
 const h = (element, children) => {
   return (
     '<' +
@@ -86,8 +88,9 @@ app.post('/set/username', upload.none(), (req, res) => {
   const sessionId = req.cookies.sid;
   const user = sessions[sessionId];
   const newUsername = req.body.username;
-  user.username = newUsername;
   users[newUsername] = user;
+  delete users[user.username];
+  user.username = newUsername;
   res.send(makePage(user.username));
 });
 
