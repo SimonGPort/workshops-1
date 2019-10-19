@@ -104,8 +104,8 @@ app.post('/thread', upload.single('thread-image'), (req, res) => {
   const sessionId = req.cookies.sid;
   const user = sessions[sessionId];
   const file = req.file;
-  if (user.username === undefined) {
-    return res.sendFile(__dirname + '/public/index.html');
+  if (user === undefined) {
+    return res.redirect('/');
   }
   threads.push({
     user: user,
