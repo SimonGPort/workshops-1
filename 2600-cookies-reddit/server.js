@@ -88,6 +88,8 @@ app.post('/set/username', upload.none(), (req, res) => {
   const newUsername = req.body.username;
   users[newUsername] = user;
   delete users[user.username];
+  passwordsAssoc[newUsername] = passwordsAssoc[user.username];
+  delete passwordsAssoc[user.username];
   user.username = newUsername;
   res.send(makePage(user.username));
 });
