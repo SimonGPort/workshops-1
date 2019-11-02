@@ -8,13 +8,14 @@
         <input type="text" name="password"></input>        
         <input type="submit" value="sign me up!"></input>        
     </form>    
-    <h2>Login</h2>    
-    <form action="/login" method="POST" enctype="multipart/form-data">        
+    <h2>Login</h2>
+    <form id="login-form">
         <div>Username</div>        
-        <input type="text" name="username"></input>        
+        <input type="text" id="login-username"></input>        
         <div>Password</div>        
-        <input type="text" name="password"></input>        
+        <input type="text" id="login-password"></input>        
         <input type="submit" value="log me in!"></input>        
-    </form>    
+    </form>
+    <script src="/static/app.js"></script>
 </body>
 </html>
