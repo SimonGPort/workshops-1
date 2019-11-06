@@ -9,7 +9,7 @@ const sessions = {};
 const messages = [];
 const colors = {};
 const ignored = {};
-// const timestamps = {};
+const directMessages = {};
 let topic = '';
 
 // const users = {};
@@ -39,7 +39,20 @@ app.post('/messages', upload.none(), (req, res) => {
   // };
 
   messages.push(newMessage);
-  res.sendFile(__dirname + '/public/chat.html');
+  res.send(JSON.stringify({ success: true }));
+});
+
+app.post('/direct-message', upload.none(), (req, res) => {
+  const sessionId = req.cookies.sid;
+  const username = sessions[sessionId];
+  const recipient = req.body.recipient;
+  directMessages[recipient].push({
+    user: username,
+    msg: req.body.message,
+    color: colors[username],
+    timestamp: Date.now(),
+  });
+  res.send(JSON.stringify({ success: true }));
 });
 
 app.get('/messages', (req, res) => {
@@ -49,7 +62,14 @@ app.get('/messages', (req, res) => {
   const filteredMessages = messages.filter(
     (message) => !ignored[username].includes(message.user)
   );
-  res.send(JSON.stringify({ messages: filteredMessages, topic }));
+  res.send(
+    JSON.stringify({
+      success: true,
+      messages: filteredMessages,
+      topic,
+      directMessages: directMessages[username],
+    })
+  );
 });
 
 app.post('/set/username', upload.none(), (req, res) => {
@@ -69,7 +89,9 @@ app.post('/set/username', upload.none(), (req, res) => {
   delete ignored[currentUsername];
   colors[newUsername] = colors[currentUsername];
   delete colors[currentUsername];
-  res.sendFile(__dirname + '/public/chat.html');
+  directMessages[newUsername] = directMessages[currentUsername];
+  delete directMessages[currentUsername];
+  res.send(JSON.stringify({ success: true }));
 });
 
 app.post('/set/color', upload.none(), (req, res) => {
@@ -82,7 +104,7 @@ app.post('/set/color', upload.none(), (req, res) => {
   messages.forEach((message) => {
     if (message.user === username) message.color = color;
   });
-  res.sendFile(__dirname + '/public/chat.html');
+  res.send(JSON.stringify({ success: true }));
 });
 
 app.post('/set/ignore', upload.none(), (req, res) => {
@@ -90,12 +112,12 @@ app.post('/set/ignore', upload.none(), (req, res) => {
   const username = sessions[sessionId];
   const annoyingUser = req.body.username;
   ignored[username].push(annoyingUser);
-  res.sendFile(__dirname + '/public/chat.html');
+  res.send(JSON.stringify({ success: true }));
 });
 
 app.post('/set/topic', upload.none(), (req, res) => {
   topic = req.body.topic;
-  res.sendFile(__dirname + '/public/chat.html');
+  res.send(JSON.stringify({ success: true }));
 });
 
 app.post('/signup', upload.none(), (req, res) => {
@@ -109,6 +131,7 @@ app.post('/signup', upload.none(), (req, res) => {
   passwordsAssoc[username] = password;
   colors[username] = 'black';
   ignored[username] = [];
+  directMessages[username] = [];
   res.send(JSON.stringify({ success: true }));
 });
 
