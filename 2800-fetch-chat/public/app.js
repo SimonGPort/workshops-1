@@ -1,8 +1,9 @@
+const signupForm = document.getElementById('signup-form');
+const signupUsername = document.getElementById('signup-username');
+const signupPassword = document.getElementById('signup-password');
 const loginForm = document.getElementById('login-form');
 const loginUsername = document.getElementById('login-username');
 const loginPassword = document.getElementById('login-password');
-let messageForm;
-let messageInput;
 
 const HTML = `
 <h1 id="topic"></h1>
@@ -70,6 +71,25 @@ const fetchAndUpdate = async () => {
   });
 };
 
+signupForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const formData = new FormData();
+  formData.append('username', signupUsername.value);
+  formData.append('password', signupPassword.value);
+  const res = await fetch('/signup', {
+    method: 'POST',
+    body: formData,
+  });
+  const body = await res.text();
+  const parsed = JSON.parse(body);
+  console.log(parsed);
+  if (parsed.success) {
+    alert('Signup successful!');
+  } else {
+    alert(parsed.message);
+  }
+});
+
 loginForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const formData = new FormData();
@@ -85,8 +105,8 @@ loginForm.addEventListener('submit', async (e) => {
   if (parsed.success) {
     document.body.innerHTML = HTML;
 
-    messageForm = document.getElementById('message-form');
-    messageInput = document.getElementById('message-input');
+    const messageForm = document.getElementById('message-form');
+    const messageInput = document.getElementById('message-input');
 
     messageForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -100,7 +120,7 @@ loginForm.addEventListener('submit', async (e) => {
     });
 
     fetchAndUpdate();
-    setInterval(fetchAndUpdate, 500);
+    setInterval(fetchAndUpdate, 500); // Request new messages every 500ms
   } else {
     alert(parsed.message);
   }

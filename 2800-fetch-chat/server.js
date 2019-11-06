@@ -102,13 +102,16 @@ app.post('/signup', upload.none(), (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
   if (passwordsAssoc[username] !== undefined) {
-    return res.send('<html><body> Username taken </body></html>');
+    return res.send(
+      JSON.stringify({ success: false, message: 'Username taken' })
+    );
   }
   passwordsAssoc[username] = password;
   colors[username] = 'black';
   ignored[username] = [];
-  res.send('<html><body> signup successful </body></html>');
+  res.send(JSON.stringify({ success: true }));
 });
+
 app.post('/login', upload.none(), (req, res) => {
   let username = req.body.username;
   let passwordGiven = req.body.password;
