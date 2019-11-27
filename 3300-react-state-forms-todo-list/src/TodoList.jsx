@@ -14,9 +14,9 @@ class TodoList extends Component {
   }
   componentDidMount() {
     console.log("After the first render");
-    // let nameEntered = window.prompt("What is the name of the list?");
-    // console.log("This is what the user entered", nameEntered);
-    this.setState({ listName: "LIST" });
+    let nameEntered = window.prompt("What is the name of the list?");
+    console.log("This is what the user entered", nameEntered);
+    this.setState({ listName: nameEntered });
   }
   onUserInputChange = event => {
     console.log("New string in input box ", event.target.value);
