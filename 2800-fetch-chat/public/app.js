@@ -72,7 +72,7 @@ const fetchAndUpdate = async () => {
     if (Date.now() - message.timestamp <= 5000) acc[message.user] = true;
     return acc;
   }, {});
-  Object.keys(activeUsers).map((username) => {
+  Object.keys(activeUsers).forEach((username) => {
     const li = document.createElement('li');
     li.textContent = username;
     activeListUL.append(li);
