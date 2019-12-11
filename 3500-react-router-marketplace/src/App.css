@@ -60,3 +60,55 @@ body {
   border: 3px solid green;
   padding: 10px;
 }
+
+.center-text {
+  text-align: center;
+}
+
+.btn {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: #4caf50;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-right > *:not(:last-child) {
+  margin-right: 10px;
+}
+
+.cart {
+  position: relative;
+}
+
+.cart > span {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: red;
+  color: #fff;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
