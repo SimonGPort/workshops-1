@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Seller extends Component {
   render() {
@@ -14,7 +14,7 @@ class Seller extends Component {
             .filter(item => item.sellerId === id)
             .map(item => (
               <li>
-                <Link to={"/item/" + item.id}>{item.description}</Link>
+                <Link to={'/item/' + item.id}>{item.description}</Link>
               </li>
             ))}
         </ul>

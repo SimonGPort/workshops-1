@@ -1,13 +1,13 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class Checkout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cardNumber: "",
-      expirationDate: "",
-      cvv: "",
-      shippingAddress: ""
+      cardNumber: '',
+      expirationDate: '',
+      cvv: '',
+      shippingAddress: ''
     };
   }
   // Generic update method
@@ -35,15 +35,15 @@ class Checkout extends Component {
       `${this.state.cardNumber} - ${this.state.expirationDate} - ${this.state.cvv} - ${this.state.shippingAddress}`
     );
     this.setState({
-      cardNumber: "",
-      expirationDate: "",
-      cvv: "",
-      shippingAddress: ""
+      cardNumber: '',
+      expirationDate: '',
+      cvv: '',
+      shippingAddress: ''
     });
     this.props.cart.forEach(this.props.decreaseInventory);
     this.props.addItemsBought(this.props.cart);
     this.props.clearCart();
-    this.props.history.push("/");
+    this.props.history.push('/');
   };
   render() {
     return (

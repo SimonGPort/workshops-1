@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Cart extends Component {
   handleRemove = idx => {
@@ -12,7 +12,7 @@ class Cart extends Component {
         <ul>
           {this.props.cart.map((item, idx) => (
             <li>
-              <Link to={"/item/" + item.id}>{item.description}</Link>
+              <Link to={'/item/' + item.id}>{item.description}</Link>
               <button onClick={() => this.handleRemove(idx)}>Remove</button>
             </li>
           ))}

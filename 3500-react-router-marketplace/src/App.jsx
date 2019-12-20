@@ -1,16 +1,16 @@
-import "./App.css";
-import React, { Component } from "react";
-import { Route, BrowserRouter, Link } from "react-router-dom";
-import Seller from "./Seller.jsx";
-import Item from "./Item.jsx";
-import Details from "./Details.jsx";
-import Reviewer from "./Reviewer.jsx";
-import Cart from "./Cart.jsx";
-import Checkout from "./Checkout.jsx";
-import Profile from "./Profile.jsx";
-import SellPage from "./SellPage.jsx";
-import Navbar from "./Navbar.jsx";
-import { initialItems, initialSellers, initialReviewers } from "./Data.js";
+import './App.css';
+import React, { Component } from 'react';
+import { Route, BrowserRouter, Link } from 'react-router-dom';
+import Seller from './Seller.jsx';
+import Item from './Item.jsx';
+import Details from './Details.jsx';
+import Reviewer from './Reviewer.jsx';
+import Cart from './Cart.jsx';
+import Checkout from './Checkout.jsx';
+import Profile from './Profile.jsx';
+import SellPage from './SellPage.jsx';
+import Navbar from './Navbar.jsx';
+import { initialItems, initialSellers, initialReviewers } from './Data.js';
 
 const renderAllSellers = () => {
   return (
@@ -19,7 +19,7 @@ const renderAllSellers = () => {
       <ul>
         {initialSellers.map(seller => (
           <li>
-            <Link to={"/seller/" + seller.id}>{seller.name}</Link>
+            <Link to={'/seller/' + seller.id}>{seller.name}</Link>
           </li>
         ))}
       </ul>

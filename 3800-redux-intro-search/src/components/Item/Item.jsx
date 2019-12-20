@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import copy from 'copy-to-clipboard';
 import items from '../../data.js';
 
 class Item extends Component {
+  handleShare = () => {
+    copy(window.location.href);
+    alert('Link copied to clipboard');
+  };
   render = () => {
     const item = items.find(item => item.id === this.props.itemId);
     return (
@@ -13,6 +18,7 @@ class Item extends Component {
           <li>Price: {item.price}</li>
           <li>In stock: {`${item.inStock}`}</li>
         </ul>
+        <button onClick={this.handleShare}>Share</button>
       </div>
     );
   };

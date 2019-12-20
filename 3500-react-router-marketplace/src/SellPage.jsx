@@ -1,13 +1,13 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class SellPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      description: "",
-      inventory: "",
-      price: "",
-      image: ""
+      description: '',
+      inventory: '',
+      price: '',
+      image: ''
     };
   }
   handleDescriptionChange = event => {
@@ -28,15 +28,15 @@ class SellPage extends Component {
       ...this.state,
       reviewIds: [],
       id: `${Math.floor(Math.random() * 100000)}`,
-      sellerId: "ewio"
+      sellerId: 'ewio'
     });
     this.setState({
-      description: "",
-      inventory: "",
-      price: "",
-      image: ""
+      description: '',
+      inventory: '',
+      price: '',
+      image: ''
     });
-    this.props.history.push("/");
+    this.props.history.push('/');
   };
   render() {
     return (
