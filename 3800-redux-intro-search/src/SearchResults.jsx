@@ -5,8 +5,7 @@ import items from './data.js';
 
 class UnconnectedSearchResults extends Component {
   render = () => {
-    const searchTags =
-      this.props.tags.length === 0 ? [] : this.props.tags.split(' ');
+    const searchTags = this.props.tags === '' ? [] : this.props.tags.split(' ');
 
     let results = items.filter(item => {
       return (
