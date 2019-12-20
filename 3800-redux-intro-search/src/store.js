@@ -5,7 +5,7 @@ const initialState = {
   min: 0,
   max: 100000,
   showOnlyInStock: false,
-  tags: ''
+  tags: []
 };
 
 let reducer = (state, action) => {
@@ -21,8 +21,13 @@ let reducer = (state, action) => {
   if (action.type === 'set-show-only-in-stock') {
     return { ...state, showOnlyInStock: action.value };
   }
-  if (action.type === 'set-search-tags') {
-    return { ...state, tags: action.value };
+  if (action.type === 'add-search-tag') {
+    return { ...state, tags: state.tags.concat(action.tag) };
+  }
+  if (action.type === 'remove-search-tag') {
+    const tagsCopy = state.tags.slice();
+    tagsCopy.splice(action.idx, 1);
+    return { ...state, tags: tagsCopy };
   }
   if (action.type === 'clear') {
     return { ...initialState };

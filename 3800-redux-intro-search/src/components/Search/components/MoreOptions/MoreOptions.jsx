@@ -2,6 +2,10 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 
 class MoreOptions extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { tagsInput: '' };
+  }
   handleMinimumPrice = evt => {
     let price = parseInt(evt.target.value) || 0;
     this.props.dispatch({ type: 'minimum-price', price: price });
@@ -20,7 +24,19 @@ class MoreOptions extends Component {
     this.props.dispatch({ type: 'clear' });
   };
   handleSearchTags = evt => {
-    this.props.dispatch({ type: 'set-search-tags', value: evt.target.value });
+    const input = evt.target.value;
+    if (input.length > 1 && input.substr(-1) === ' ') {
+      this.setState({ tagsInput: '' });
+      this.props.dispatch({
+        type: 'add-search-tag',
+        tag: input.trim()
+      });
+    } else {
+      this.setState({ tagsInput: input });
+    }
+  };
+  handleRemoveTag = idx => {
+    this.props.dispatch({ type: 'remove-search-tag', idx: idx });
   };
   render = () => {
     return (
@@ -30,8 +46,19 @@ class MoreOptions extends Component {
           <input
             type="text"
             onChange={this.handleSearchTags}
-            value={this.props.tags}
+            value={this.state.tagsInput}
           />
+          <div>
+            {this.props.tags.map((tag, idx) => (
+              <button
+                key={`tag-${idx}`}
+                className="tag"
+                onClick={() => this.handleRemoveTag(idx)}
+              >
+                {tag} <span>x</span>
+              </button>
+            ))}
+          </div>
         </div>
         <div>
           Minimum price

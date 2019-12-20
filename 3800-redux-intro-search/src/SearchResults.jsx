@@ -5,17 +5,14 @@ import items from './data.js';
 
 class UnconnectedSearchResults extends Component {
   render = () => {
-    const searchTags =
-      this.props.tags.length === 0 ? [] : this.props.tags.split(' ');
-
     let results = items.filter(item => {
       return (
         item.name.includes(this.props.query) &&
         item.price >= this.props.min &&
         item.price <= this.props.max &&
         (this.props.showOnlyInStock ? item.inStock : true) &&
-        (searchTags.length > 0
-          ? item.tags.some(tag => searchTags.includes(tag))
+        (this.props.tags.length > 0
+          ? item.tags.some(tag => this.props.tags.includes(tag))
           : true)
       );
     });

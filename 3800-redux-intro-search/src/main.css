@@ -6,3 +6,18 @@ body {
 .item-img {
   max-width: 300px;
 }
+
+.tag {
+  border-radius: 10px;
+  padding: 2px 12px;
+  border: none;
+  margin-right: 5px;
+  background: #2196f3;
+  color: #fff;
+  cursor: pointer;
+}
+
+.tag > span {
+  color: #000;
+  margin-left: 5px;
+}
