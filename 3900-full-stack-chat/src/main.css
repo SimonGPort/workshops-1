@@ -1,3 +1,21 @@
 body {
-    background-color: #bbb;
+  background-color: #bbb;
+}
+
+.timestamp {
+  color: grey;
+}
+
+.chatroom {
+  display: flex;
+  justify-content: space-around;
+}
+
+.chat-msg {
+  display: flex;
+  align-items: center;
+}
+
+.chat-msg > img {
+  max-width: 100px;
 }
